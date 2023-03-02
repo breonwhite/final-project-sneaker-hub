@@ -95,4 +95,18 @@ Listing.create(
     sold: false,
 )
 
+puts "🌱 Done seeding Listings! Now seeding Purchases..."
+
+Purchase.create(
+    buyer_id: 1,
+    listing_id: 1,
+    purchased_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now)
+)
+
+Purchase.create(
+    buyer_id: 1,
+    listing_id: 2,
+    purchased_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now)
+)
+
 puts "🌱 Done Seeding!"
