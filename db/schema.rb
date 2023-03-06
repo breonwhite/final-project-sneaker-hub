@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_02_013733) do
+ActiveRecord::Schema.define(version: 2023_03_06_145755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2023_03_02_013733) do
     t.bigint "sneaker_id", null: false
     t.decimal "price"
     t.string "size"
-    t.boolean "sold"
+    t.boolean "sold", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["buyer_id"], name: "index_listings_on_buyer_id"
@@ -45,9 +45,9 @@ ActiveRecord::Schema.define(version: 2023_03_02_013733) do
     t.text "description"
     t.date "release_date"
     t.string "image"
-    t.string "retail_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "retail_price"
   end
 
   create_table "users", force: :cascade do |t|
