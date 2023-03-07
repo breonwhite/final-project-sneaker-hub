@@ -60,6 +60,7 @@ const Listings = () => {
 
   const confirmPurchase = (listing, index) => {
     console.log(listing.id)
+
     setIsDialogOpen(true);
     setOpenDialogIndex(index);
   }
@@ -91,7 +92,15 @@ const Listings = () => {
       <br/>
       <h2>Current Listings</h2><br/>
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-          { otherListings.map((l, index) => 
+          { otherListings.map((l, index) => {
+
+            const price = parseFloat(l.price);
+            const shippingFee = 14.95;
+            const tax = price * 0.1;
+            const processingFee = price * 0.06;
+            const total = (price + shippingFee + tax + processingFee).toFixed(2)
+
+          return (
           <div key={ index }>
             <ListingsItem listing={l} viewSeller={viewSeller} confirmPurchase={() => confirmPurchase(l, index)} />
             <Divider />
@@ -178,31 +187,31 @@ const Listings = () => {
                           <TableCell component="th" scope="row" >
                             Your Purchase Price
                             </TableCell>
-                            <TableCell align="right">${l.price}</TableCell>
+                            <TableCell align="right">${price.toFixed(2)}</TableCell>
                     </TableRow>
                     <TableRow>
                           <TableCell component="th" scope="row" >
                             Sales Tax
                             </TableCell>
-                            <TableCell align="right">${l.price}</TableCell>
+                            <TableCell align="right">${tax.toFixed(2)}</TableCell>
                     </TableRow>
                     <TableRow>
                           <TableCell component="th" scope="row" >
                               Processing Fee
                             </TableCell>
-                            <TableCell align="right">${l.price}</TableCell>
+                            <TableCell align="right">${processingFee.toFixed(2)}</TableCell>
                     </TableRow>
                     <TableRow>
                           <TableCell component="th" scope="row" >
                               Shipping
                             </TableCell>
-                            <TableCell align="right">${l.price}</TableCell>
+                            <TableCell align="right">${shippingFee.toFixed(2)}</TableCell>
                     </TableRow>
                     <TableRow>
                           <TableCell component="th" scope="row" align="right">
                               <b>TOTAL</b>
                             </TableCell>
-                            <TableCell align="right"><b>${l.price}</b></TableCell>
+                            <TableCell align="right"><b>${total}</b></TableCell>
                     </TableRow>
                     </TableBody>
                     </Table>
@@ -210,12 +219,13 @@ const Listings = () => {
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={handleClose}>Cancel</Button>
-                  <Button onClick={handleClose} autoFocus>
-                    Confirm Purchase
+                  <Button onClick={handleClose} variant="contained" color="success" autoFocus>
+                    Purchase for ${total}
                   </Button>
                 </DialogActions>
       </Dialog>
             </div>
+          )}
           )}
         </List>
       {/* <ul>
