@@ -1,19 +1,21 @@
 class PurchasesController < ApplicationController
+    
     def index
-        purchases = Purchase.all
+        purchases = Purchase.where(buyer_id: current_user.id)
         render json: purchases
     end
 
+
     def create
-        listing = Listing.find(params[:listing_id])
-        purchase = Purchase.new(listing_id: listing.id, buyer_id: current_user.id)
+        @listing = Listing.find(params[:listing_id])
+        @purchase = Purchase.new(listing_id: @listing.id, buyer_id: current_user.id)
         
-        if purchase.save
+        if @purchase.save
           # Update the listing
-          listing.update(sold: true, buyer_id: current_user.id)
-          render json: purchase, status: :created
+          @listing.update(sold: true, buyer_id: current_user.id)
+          render json: { message: "Purchase was successfully created." }
         else
-            render json: purchase.errors, status: :unprocessable_entity
+            render json: @purchase.errors, status: :unprocessable_entity
         end
     end
 
