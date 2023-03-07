@@ -15,17 +15,27 @@ import FaceIcon from '@mui/icons-material/Face';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useNavigate } from 'react-router-dom';
 
 
 
-const ListingsItem = ({ listing }) => {
+const ListingsItem = ({ listing, viewSeller, confirmPurchase }) => {
     const sneaker = listing.sneaker
+    const navigate = useNavigate();
+
+    const handleProfile = () => {
+        viewSeller(listing.seller)
+    }
+
+    const handlePurchase = () => {
+        confirmPurchase(listing)
+    }
 
     return (
       <ListItem 
           alignItems="flex-start"
           secondaryAction={
-            <Button variant="contained" startIcon={<ShoppingCartIcon />}>
+            <Button variant="contained" startIcon={<ShoppingCartIcon />} onClick={handlePurchase}>
                 Buy for ${listing.price}
             </Button>
           }>
@@ -54,7 +64,7 @@ const ListingsItem = ({ listing }) => {
                               { `Colorway: ${sneaker.colorway} mins | Release Date: ${sneaker.release_date} | Retail Price: ${sneaker.retail_price}` }
                           </Typography><br />
                           <Typography variant="caption">
-                              Listed by <Link to={`/profile/${listing.seller.id}`}>{listing.seller.username}</Link>
+                            Listed by <Button size="small" variant="text" onClick={handleProfile}>{listing.seller.username}</Button>
                           </Typography>
                       </React.Fragment>
               }
