@@ -1,4 +1,5 @@
-class ListingsController < ApplicationController    
+class ListingsController < ApplicationController
+
     def index
         listings = Listing.all
         render json: listings
@@ -16,21 +17,40 @@ class ListingsController < ApplicationController
         else
           render json: listing.errors, status: :unprocessable_entity
         end
-      end
-    
-      private
+    end
 
-      def current_user
+    def update
+      listing = Listing.find(params[:id])
+      if listing.seller.id == current_user.id
+        listing.update(listing_params)
+        render json: { listing: listing.as_json(include: :sneaker), listings: Listing.all.as_json(include: :sneaker) }
+      else
+        render json: {error: "You're not authorized to update this listing"}, status: :unauthorized
+      end
+    end
+
+    def destroy
+      listing = Listing.find_by(id: params[:id])
+      if listing
+        listing.destroy
+      else
+          render json: "Not found"
+      end   
+    end 
+
+    private
+
+    def current_user
         User.find_by(id: session[:user_id])
     end
     
-      def sneaker_params
-        params.require(:sneaker).permit(:name, :colorway, :description, :release_date, :image, :retail_price)
-      end
+    def sneaker_params
+      params.require(:sneaker).permit(:name, :colorway, :description, :release_date, :image, :retail_price)
+    end
     
-      def listing_params
-        params.require(:listing).permit(:price, :size)
-      end
+    def listing_params
+      params.require(:listing).permit(:price, :size)
+    end
 
     
     
