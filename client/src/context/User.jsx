@@ -82,24 +82,22 @@ const UserProvider = (props) => {
   }
 
   async function deleteListing(listing) {
-    // console.log(listing)
-    // const response = await fetch('/listings', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     listing_id: listing.id,
-    //   }),
-    // });
-    // if (response.ok) {
-    //   const data = await response.json();
-    //   console.log(data)
-    //   return data;
-    // } else {
-    //   const errors = await response.json();
-    //   console.log(errors)
-    // }
+    console.log(`Listing to Delete: ${listing}`);
+    const response = await fetch(`/listings/${listing.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      setListings(listings.filter((l) => l.id !== listing.id));
+      return data;
+    } else {
+      const errors = await response.json();
+      console.log(errors);
+    }
   }
 
   const signup = (user) => {
