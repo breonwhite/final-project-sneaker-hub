@@ -10,6 +10,27 @@ const UserProvider = (props) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  async function purchaseListing(listing) {
+    const response = await fetch("/purchases", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        listing_id: listing.id,
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      setListings(data.listings)
+      console.log(data);
+      return data;
+    } else {
+      const errors = await response.json();
+      console.log(errors);
+    }
+  }
+
   useEffect(() => {
     async function fetchCurrentUser() {
       const resp = await fetch("/me");
@@ -51,6 +72,10 @@ const UserProvider = (props) => {
     });
     if (response.ok) {
       const data = await response.json();
+      // Fetch the updated listings data
+      const listingsResponse = await fetch("/listings");
+      const listingsData = await listingsResponse.json();
+      setListings(listingsData);
       console.log(data);
       return data;
     } else {
@@ -81,23 +106,22 @@ const UserProvider = (props) => {
     }
   }
 
-  async function deleteListing(listing) {
-    console.log(`Listing to Delete: ${listing}`);
-    const response = await fetch(`/listings/${listing.id}`, {
-      method: "DELETE",
+  function destroyListing(listing) {
+    fetch(`/listings/${listing.id}`, {
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       }
-    });
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
       setListings(listings.filter((l) => l.id !== listing.id));
-      return data;
-    } else {
-      const errors = await response.json();
-      console.log(errors);
-    }
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
   }
 
   const signup = (user) => {
@@ -126,10 +150,11 @@ const UserProvider = (props) => {
         loading,
         listings,
         loggedIn,
+        fetchListings,
         setListings,
         purchaseListing,
         editListing,
-        deleteListing,
+        destroyListing,
       }}
     >
       {props.children}
