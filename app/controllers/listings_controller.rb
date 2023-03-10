@@ -23,7 +23,7 @@ class ListingsController < ApplicationController
       listing = Listing.find(params[:id])
       if listing.seller.id == current_user.id
         listing.update(listing_params)
-        render json: { listing: listing.as_json(include: :sneaker), listings: Listing.all.as_json(include: :sneaker) }
+        render json: { listing: listing.as_json(include: :sneaker), listings: Listing.all }
       else
         render json: {error: "You're not authorized to update this listing"}, status: :unauthorized
       end
@@ -33,6 +33,7 @@ class ListingsController < ApplicationController
       listing = Listing.find_by(id: params[:id])
       if listing
         listing.destroy
+        render json: {}, status: :no_content
       else
           render json: "Not found"
       end   

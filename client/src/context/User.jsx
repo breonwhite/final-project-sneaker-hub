@@ -83,6 +83,7 @@ const UserProvider = (props) => {
       console.log(errors);
     }
   }
+  
 
   async function editListing(listing, updatedListing) {
     console.log(listing);
