@@ -110,7 +110,7 @@ const Dashboard = () => {
     return <Unauthorized />;
   } else {
     return (
-      <Box sx={{ flexGrow: 1, backgroundColor: "#607d8b" }}>
+      <Box sx={{ flexGrow: 1 }}>
         <Snackbar
           open={successAlert}
           onClose={handleAlertClose}
