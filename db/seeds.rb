@@ -11,7 +11,7 @@
 puts "🌱 Seeding User..." 
 
 buyer = User.create(
-    email: "bishop@malinator.com",
+    email: "bishop22122@mailinator.com",
     username: "bishopxking",
     first_name: "Bishop",
     last_name: "Bourque",
@@ -25,7 +25,7 @@ buyer = User.create(
 )
 
 seller = User.create(
-    email: "twilight@malinator.com",
+    email: "twilightexscada@mailinator.com",
     username: "twilightcvnt",
     first_name: "Twilight",
     last_name: "Exscada",
