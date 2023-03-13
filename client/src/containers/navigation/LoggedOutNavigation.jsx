@@ -10,7 +10,9 @@ const LoggedOutNavigation = () => {
     <Toolbar>
       <Typography
         variant="h6"
-        component="a"
+        component={NavLink}
+        exact="true"
+        to="/"
         noWrap
         sx={{
           flexGrow: 1,

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../context/User";
 import noimageavailble from "../images/no-image-available.png";
+import sneakerboxes from "../images/sneaker-boxes-2.jpg";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
@@ -19,7 +20,7 @@ import Loading from "../containers/Loading";
 
 const ListingNew = () => {
   const { createListing, loggedIn, loading } = useContext(UserContext); // Listing context from User.jsx
-  const [imagePreview, setImagePreview] = useState(noimageavailble);
+  const [imagePreview, setImagePreview] = useState(sneakerboxes);
   const [successAlert, setSuccessAlert] = React.useState(false);
   const [sneaker, setSneaker] = useState({
     name: "",
@@ -126,8 +127,8 @@ const ListingNew = () => {
             <Card sx={{ display: "flex", width: "100%" }} elevation={24}>
               <CardMedia
                 component="img"
-                sx={{ width: "100%" }}
-                image={sneaker.image ? imagePreview : noimageavailble}
+                sx={{ width: "40%", height: "80%", objectFit: "cover" }}
+                image={sneaker.image ? imagePreview : sneakerboxes}
                 alt="Live from space album cover"
               />
               <CardContent sx={{ flex: "1 0 auto", maxWidth: 900 }}>

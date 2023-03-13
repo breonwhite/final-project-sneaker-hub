@@ -180,6 +180,7 @@ const UserProvider = (props) => {
   const login = (user) => {
     setUser(user);
     setLoggedIn(true);
+    setLoading(false)
   };
 
   const logout = () => {

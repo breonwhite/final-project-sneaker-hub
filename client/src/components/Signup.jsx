@@ -13,7 +13,6 @@ import Alert from "@mui/material/Alert";
 import FormControl from "@mui/material/FormControl";
 import concrete4 from "../images/concrete-4.jpg";
 
-
 const Signup = () => {
   const [errorsList, setErrorsList] = useState();
   const { signup } = useContext(UserContext);
@@ -85,9 +84,11 @@ const Signup = () => {
             password: "",
             password_confirmation: "",
           });
-          navigate('/')
+          navigate("/");
           const errorsLi = data.errors.map((e) => (
-            <Alert key={e} severity="error">{e}</Alert>
+            <Alert key={e} severity="error">
+              {e}
+            </Alert>
           ));
           setErrorsList(errorsLi);
         }
@@ -98,9 +99,9 @@ const Signup = () => {
   return (
     <Box
       style={{
-        backgroundImage: `url(${concrete4})`,
         backgroundSize: "cover",
         height: "100vh",
+        backgroundColor: "#3ccce5"
       }}
     >
       <Grid
@@ -151,8 +152,8 @@ const Signup = () => {
                   value={user.username}
                   onChange={handleChange}
                 />
-                </FormControl>
-                <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
+              </FormControl>
+              <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
                 <TextField
                   fullWidth
                   name="email"
@@ -161,8 +162,8 @@ const Signup = () => {
                   value={user.email}
                   onChange={handleChange}
                 />
-                </FormControl>
-                <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
+              </FormControl>
+              <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
                 <TextField
                   fullWidth
                   name="password"
@@ -171,8 +172,8 @@ const Signup = () => {
                   value={user.password}
                   onChange={handleChange}
                 />
-                </FormControl>
-                <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
+              </FormControl>
+              <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
                 <TextField
                   fullWidth
                   name="password_confirmation"
@@ -228,41 +229,39 @@ const Signup = () => {
                   onChange={handleChange}
                 />
               </FormControl>
-                {errorsList ? (
-            <FormControl fullWidth sx={{ width: "100%", mt: 1, mr: 1 }}>
-              <Stack sx={{ width: "100%" }} spacing={1}>
-                {errorsList}
-              </Stack>
-            </FormControl>
-          ) : (
-            <FormControl
-              fullWidth
-              sx={{ width: "100%", mt: 2, mr: 1 }}
-              align="center"
-            >
-              <Typography variant="caption" display="block" gutterBottom>
-                Already have an account?{" "}
-                <Link exact="true" to="/login">
-                  Login here.
-                </Link>
-              </Typography>
-            </FormControl>
-          )}
-            </Card>
-            <Button
-                  variant="contained"
-                  type="submit"
-                  size="normal"
-                  color="success"
-                  style={{
-                    fontSize: "15px",
-                  }}
+              {errorsList ? (
+                <FormControl fullWidth sx={{ width: "100%", mt: 1, mr: 1 }}>
+                  <Stack sx={{ width: "100%" }} spacing={1}>
+                    {errorsList}
+                  </Stack>
+                </FormControl>
+              ) : (
+                <FormControl
+                  fullWidth
+                  sx={{ width: "100%", mt: 2, mr: 1 }}
+                  align="center"
                 >
-                  Create Your Account
-                </Button>
+                  <Typography variant="caption" display="block" gutterBottom>
+                    Already have an account?{" "}
+                    <Link exact="true" to="/login">
+                      Login here.
+                    </Link>
+                  </Typography>
+                </FormControl>
+              )}
+            </Card><br/>
+            <Button
+              variant="contained"
+              type="submit"
+              size="normal"
+              style={{
+                fontSize: "15px",
+                background: "#212121"
+              }}
+            >
+              Create Your Account
+            </Button>
           </form>
-
-          
         </Grid>
       </Grid>
     </Box>
