@@ -9,7 +9,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
 
 const ListingsItem = ({ listing, confirmPurchase }) => {
-  const sneaker = listing.sneaker;
   const navigate = useNavigate();
 
   const handlePurchase = () => {
@@ -31,8 +30,8 @@ const ListingsItem = ({ listing, confirmPurchase }) => {
     >
       <ListItemAvatar sx={{ m: 1 }}>
         <Avatar
-          alt={sneaker.name}
-          src={sneaker.image}
+          alt={listing.sneaker.name}
+          src={listing.sneaker.image}
           sx={{ width: 150, height: "100%" }}
           variant="rounded"
         />
@@ -40,9 +39,9 @@ const ListingsItem = ({ listing, confirmPurchase }) => {
       <ListItemText
         primary={
           <React.Fragment>
-            <Typography variant="h6">{sneaker.name}</Typography>
+            <Typography variant="h6">{listing.sneaker.name}</Typography>
             <Typography variant="subtitle1" gutterBottom>
-                Colorway: {sneaker.colorway}
+                Colorway: {listing.sneaker.colorway}
             </Typography>
           </React.Fragment>
         }
@@ -54,7 +53,7 @@ const ListingsItem = ({ listing, confirmPurchase }) => {
               variant="body2"
               color="text.primary"
             >
-              {`Release Date: ${sneaker.release_date} | Retail Price: ${sneaker.retail_price}`}
+              {`Release Date: ${listing.sneaker.release_date} | Retail Price: ${listing.sneaker.retail_price}`}
             </Typography>
             <br />
             <Typography variant="caption">
