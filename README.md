@@ -1,4 +1,4 @@
-# Phase 4 Project - Buckit/
+# Phase 5 Project - SneakerHub
 
 Feature Lead:
 Breon White
