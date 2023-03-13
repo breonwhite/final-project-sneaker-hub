@@ -41,7 +41,7 @@ const LoggedInNavigation = () => {
       <Button color="inherit" component={NavLink} exact="true" to="/dashboard">
         Dashboard
       </Button>
-      <Button color="inherit" component={NavLink} exact="true" to="/listings">
+      <Button color="inherit" component={NavLink} exact="true" to="/listings/view">
         Products
       </Button>
       <Button

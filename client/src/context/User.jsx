@@ -175,12 +175,14 @@ const UserProvider = (props) => {
   const signup = (user) => {
     setUser(user);
     setLoggedIn(true);
+    setLoading(false)
   };
 
   const login = (user) => {
     setUser(user);
     setLoggedIn(true);
     setLoading(false)
+    navigate("/")
   };
 
   const logout = () => {

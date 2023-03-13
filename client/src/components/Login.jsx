@@ -2,15 +2,10 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../context/User";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
-import concrete1 from "../images/concrete-1.jpg";
-import concrete2 from "../images/concrete-2.jpg";
 import concrete3 from "../images/concrete-3.jpg";
 import Box from "@mui/material/Box";
-
-import Autocomplete from "@mui/material/Autocomplete";
-
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
@@ -18,7 +13,6 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import FormControl from "@mui/material/FormControl";
-import { useNavigate } from "react-router-dom";
 
 const Div = styled("div")(({ theme }) => ({
   ...theme.typography.h3,
@@ -51,7 +45,6 @@ const Login = () => {
       if (response.ok) {
         response.json().then((user) => {
           login(user);
-          navigate("/");
         });
       } else {
         response.json().then((json) => {
