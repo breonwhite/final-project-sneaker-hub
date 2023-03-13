@@ -84,7 +84,6 @@ const Signup = () => {
             password: "",
             password_confirmation: "",
           });
-          navigate("/");
           const errorsLi = data.errors.map((e) => (
             <Alert key={e} severity="error">
               {e}

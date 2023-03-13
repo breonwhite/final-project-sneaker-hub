@@ -45,6 +45,7 @@ const ListingNew = () => {
       resetForm();
     } catch (error) {
       console.error(error);
+      alert(`Error: ${error.message}`);
     }
   };
 
