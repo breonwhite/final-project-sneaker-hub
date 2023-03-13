@@ -50,7 +50,7 @@ const LoggedInNavigation = () => {
         exact="true"
         to="/listings/new"
       >
-        Sale
+        SELL
       </Button>
       <Button color="inherit" component={NavLink} exact="true" to="/account">
         Account
