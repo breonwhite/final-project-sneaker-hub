@@ -10,11 +10,14 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Unauthorized from "../containers/Unauthorized";
 import Loading from "../containers/Loading";
+import Snackbar from "@mui/material/Snackbar";
+import SellIcon from "@mui/icons-material/Sell";
 
 const Listings = () => {
   const { user, listings, purchaseListing, loggedIn, loading } =
     useContext(UserContext); // Listing context from User.jsx
   const [activeListings, setActiveListings] = useState([]);
+  const [successAlert, setSuccessAlert] = React.useState(false);
 
   useEffect(() => {
     const filteredListings = listings.filter(
@@ -30,6 +33,7 @@ const Listings = () => {
       handleClose();
       const newListing = activeListings.filter((i) => i.id !== listing.id);
       setActiveListings(newListing);
+      setSuccessAlert(true);
     } catch (error) {
       console.error(error);
     }
@@ -48,6 +52,10 @@ const Listings = () => {
   const handleClose = () => {
     setIsDialogOpen(false);
     setOpenDialogIndex(-1);
+  };
+
+  const handleAlertClose = () => {
+    setSuccessAlert(false);
   };
 
   const descriptionElementRef = React.useRef(null);
@@ -73,6 +81,18 @@ const Listings = () => {
           justifyContent: "center",
         }}
       >
+        <Snackbar
+          open={successAlert}
+          onClose={handleAlertClose}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          autoHideDuration={3000}
+          message={
+            <React.Fragment>
+              <SellIcon style={{ verticalAlign: "middle" }} /> Enjoy your new
+              sneakers!
+            </React.Fragment>
+          }
+        />
         <Grid
           container
           spacing={2}
