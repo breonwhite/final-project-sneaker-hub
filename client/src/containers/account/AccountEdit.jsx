@@ -1,19 +1,13 @@
 import React, { useState, useContext } from "react";
-import { UserContext } from "../../context/User";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import Alert from "@mui/material/Alert";
 import FormControl from "@mui/material/FormControl";
 import CardActions from "@mui/material/CardActions";
 
-const AccountEdit = ({ user, updateUser }) => {
+const AccountEdit = ({ user, updateUser, cancelEdit }) => {
   const [update, setUpdate] = useState({
     username: user.username,
     first_name: user.first_name,
@@ -38,12 +32,19 @@ const AccountEdit = ({ user, updateUser }) => {
     }));
   };
 
+  const handleCancel = () => {
+    cancelEdit();
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <Typography variant="h2" gutterBottom>
         Your Account
       </Typography>
-      <Card sx={{ width: "100%", padding: "10px", backgroundColor: "#eeeeee" }} elevation={24}>
+      <Card
+        sx={{ width: "100%", padding: "10px", backgroundColor: "#eeeeee" }}
+        elevation={24}
+      >
         <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
           <Stack direction="row" spacing={2}>
             <TextField
@@ -130,12 +131,23 @@ const AccountEdit = ({ user, updateUser }) => {
             variant="contained"
             type="submit"
             size="normal"
+            color="success"
             style={{
-              backgroundColor: "#212121",
               fontSize: "15px",
             }}
           >
             Save Changes
+          </Button>
+          <Button
+            variant="contained"
+            size="normal"
+            onClick={handleCancel}
+            style={{
+              backgroundColor: "#9e9e9e",
+              fontSize: "15px",
+            }}
+          >
+            Cancel
           </Button>
         </CardActions>
       </Card>
