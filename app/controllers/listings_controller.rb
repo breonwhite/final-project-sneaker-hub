@@ -39,6 +39,23 @@ class ListingsController < ApplicationController
       end   
     end 
 
+    def statistics
+      user_listings = Listing.where(seller_id: current_user.id)
+      total_listings = user_listings.count
+      active_listings = user_listings.where(sold: false).count
+      purchased_listings = user_listings.where(sold: true).count
+      gross_sales = user_listings.sum(:price)
+      total_income = user_listings.where(sold: true).sum(:price)
+    
+      render json: {
+        total_listings: total_listings,
+        active_listings: active_listings,
+        purchased_listings: purchased_listings,
+        gross_sales: gross_sales,
+        total_income: total_income
+      }
+    end
+
     private
 
     def current_user
@@ -53,51 +70,4 @@ class ListingsController < ApplicationController
       params.require(:listing).permit(:price, :size)
     end
 
-    
-    
-    # def new
-    #     @listing = Listing.new
-    #     @sneakers = Sneaker.all
-    # end
-    
-    # def create
-    #     @listing = current_user.listings.build(listing_params)
-    #     if @listing.save
-    #       redirect_to listings_path, notice: "Listing successfully created"
-    #     else
-    #       @sneakers = Sneaker.all
-    #       render :new
-    #     end
-    # end
-    
-    # def show
-    #     @listing = Listing.find(params[:id])
-    # end
-    
-    # def edit
-    #     @listing = Listing.find(params[:id])
-    #     @sneakers = Sneaker.all
-    # end
-
-    # def update
-    #     @listing = Listing.find(params[:id])
-    #     if @listing.update(listing_params)
-    #       redirect_to listings_path, notice: "Listing successfully updated"
-    #     else
-    #       @sneakers = Sneaker.all
-    #       render :edit
-    #     end
-    # end
-    
-    # private
-    
-    # def listing_params
-    #     params.require(:listing).permit(:sneaker_id, :price)
-    # end
-    
-    # def require_seller
-    #     unless current_user && current_user.seller?
-    #       redirect_to root_path, alert: "You need to be a seller to access this page"
-    #     end
-    # end
 end

@@ -8,11 +8,10 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   
-  
   post '/signup', to: 'users#create'
   
-  
-  
+  get '/statistics', to: 'listings#statistics'
+  get '/purchase_summary', to: 'purchases#purchase_summary'
   
   resources :users, only: [:index, :show, :create, :update, :destroy]
   resources :listings, only: [:index, :show, :create, :update, :destroy]
