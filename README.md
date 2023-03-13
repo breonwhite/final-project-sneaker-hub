@@ -11,8 +11,6 @@ Sneaker Store Web Application
 
 Sneaker Hub is a web application for sneaker enthusiasts. Sneaker Hub is different from other online stores because of its sense of community, allowing users to engage with one another. 
 
-#### To view application on Render: [https://buckit-app.onrender.com/](https://buckit-app.onrender.com/) 
-
 ## User Experience:
 On this platform, a user can: 
 
@@ -20,6 +18,8 @@ On this platform, a user can:
 - Login to an authenticate an existing account
 - As a seller, can View, Create, Edit, and Delete sneaker listings
 - As a buyer, can View and Purchase sneakers that are being sold by other users
+
+![seller-view-image](https://i.ibb.co/wgcFHnc/Screenshot-2023-03-13-at-2-57-03-AM.png)
 
 ## Requirements
 - Ruby 2.7.4
