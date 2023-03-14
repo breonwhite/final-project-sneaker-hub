@@ -15,7 +15,7 @@ class ListingsController < ApplicationController
         if listing.save
           render json: listing, status: :created
         else
-          render json: listing.errors, status: :unprocessable_entity
+          render json: { errors: listing.errors.full_messages }, status: :unprocessable_entity
         end
     end
 

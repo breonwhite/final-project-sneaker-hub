@@ -17,9 +17,10 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Snackbar from "@mui/material/Snackbar";
 import Unauthorized from "../containers/Unauthorized";
 import Loading from "../containers/Loading";
+import Alert from "@mui/material/Alert";
 
 const ListingNew = () => {
-  const { createListing, loggedIn, loading } = useContext(UserContext); // Listing context from User.jsx
+  const { listings, setListings, loggedIn, loading } = useContext(UserContext); // Listing context from User.jsx
   const [imagePreview, setImagePreview] = useState(sneakerboxes);
   const [successAlert, setSuccessAlert] = React.useState(false);
   const [sneaker, setSneaker] = useState({
@@ -30,23 +31,42 @@ const ListingNew = () => {
     image: "",
     retail_price: "",
   });
+  const [errorsList, setErrorsList] = useState();
 
   const [listing, setListing] = useState({
     price: "",
     size: "",
   });
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    try {
-      const data = await createListing(sneaker, listing);
-      console.log(data);
-      setSuccessAlert(true);
-      resetForm();
-    } catch (error) {
-      console.error(error);
-      alert(`Error: ${error.message}`);
-    }
+    fetch("/listings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        sneaker: sneaker,
+        listing: listing,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.errors) {
+          console.log(data)
+          setListings([...listings, data]);
+          setSuccessAlert(true);
+          resetForm();
+        } else {
+          const errorsLi = data.errors.map((e) => (
+            <Alert key={e} severity="error">
+              {e}
+            </Alert>
+          ));
+          setErrorsList(errorsLi);
+        }
+      });
   };
 
   const handleSneakerChange = (e) => {
@@ -141,6 +161,7 @@ const ListingNew = () => {
                       Sneaker Details
                     </Typography>
                     <TextField
+                    required
                       type="text"
                       name="name"
                       value={sneaker.name}
@@ -151,6 +172,7 @@ const ListingNew = () => {
                     <br />
                     <TextField
                       type="text"
+                      required
                       name="colorway"
                       value={sneaker.colorway}
                       onChange={handleSneakerChange}
@@ -235,6 +257,9 @@ const ListingNew = () => {
                     />
                     <br />
                   </FormControl>
+                  <Stack sx={{ width: "100%" }} spacing={1}>
+                    {errorsList}
+                  </Stack>
                   <Button
                     variant="contained"
                     type="submit"

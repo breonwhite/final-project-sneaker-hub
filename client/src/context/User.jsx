@@ -23,13 +23,13 @@ const UserProvider = (props) => {
           console.log(data.error);
           setLoggedIn(false);
         } else {
-          setLoggedIn(true)
+          setLoggedIn(true);
           fetchListings();
           fetchPurchases();
           getStatistics();
-          setLoading(false)
+          setLoading(false);
         }
-    });
+      });
   }, []);
 
   const fetchListings = () => {
@@ -40,7 +40,7 @@ const UserProvider = (props) => {
           console.log(data.error);
         } else {
           setListings(data);
-          console.log(data)
+          console.log(data);
           setLoading(false);
         }
       });
@@ -72,26 +72,6 @@ const UserProvider = (props) => {
         }
       });
   };
-
-  async function createListing(sneaker, listing) {
-    const response = await fetch("/listings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        sneaker: sneaker,
-        listing: listing,
-      }),
-    });
-    if (!response.ok) {
-      const errors = await response.json();
-      throw new Error(errors);
-    }
-    const data = await response.json();
-    setListings([...listings, data]);
-    return data;
-  }
 
   async function purchaseListing(listing) {
     const response = await fetch("/purchases", {
@@ -136,25 +116,6 @@ const UserProvider = (props) => {
     }
   }
 
-  async function editProfile(userUpdates) {
-    const response = await fetch(`/users/${user.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userUpdates),
-    });
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-      setUser(data);
-      return data;
-    } else {
-      const errors = await response.json();
-      console.log(errors);
-    }
-  }
-
   function destroyListing(listing) {
     fetch(`/listings/${listing.id}`, {
       method: "DELETE",
@@ -174,14 +135,15 @@ const UserProvider = (props) => {
   }
 
   const signup = (user) => {
-    setLoading(true)
+    setLoading(true);
     console.log("Signing up user: ", user);
     setUser(user);
     console.log("User state updated: ", user);
     fetchListings();
-    console.log("Listings state loaded:", listings)
+    fetchPurchases();
+    console.log("Listings state loaded:", listings);
     setLoggedIn(true);
-    setLoading(false)
+    setLoading(false);
   };
 
   const login = (user) => {
@@ -190,7 +152,8 @@ const UserProvider = (props) => {
     setUser(user);
     console.log("User state: ", user);
     fetchListings();
-    console.log("Listings state loaded:", listings)
+    fetchPurchases();
+    console.log("Listings state loaded:", listings);
     setLoggedIn(true);
     setLoading(false);
   };
@@ -216,11 +179,10 @@ const UserProvider = (props) => {
         statistics,
         setListings,
         getStatistics,
-        createListing,
+        setUser,
         setLoading,
         purchaseListing,
         editListing,
-        editProfile,
         destroyListing,
       }}
     >

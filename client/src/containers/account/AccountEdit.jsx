@@ -6,8 +6,9 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import FormControl from "@mui/material/FormControl";
 import CardActions from "@mui/material/CardActions";
+import Alert from "@mui/material/Alert";
 
-const AccountEdit = ({ user, updateUser, cancelEdit }) => {
+const AccountEdit = ({ user, updateUser, cancelEdit, errorsList }) => {
   const [update, setUpdate] = useState({
     username: user.username,
     first_name: user.first_name,
@@ -150,6 +151,9 @@ const AccountEdit = ({ user, updateUser, cancelEdit }) => {
             Cancel
           </Button>
         </CardActions>
+        <Stack sx={{ width: "100%" }} spacing={1}>
+                    {errorsList}
+                  </Stack>
       </Card>
     </form>
   );

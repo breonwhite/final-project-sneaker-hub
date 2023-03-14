@@ -19,7 +19,7 @@ class PurchasesController < ApplicationController
             listings: Listing.all.as_json(include: [:buyer, :sneaker]) 
             }
         else
-          render json: purchase.errors, status: :unprocessable_entity
+          render json: { errors: purchase.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
@@ -33,7 +33,6 @@ class PurchasesController < ApplicationController
           num_purchases: num_purchases,
         }
     end
-
 
 
     private
