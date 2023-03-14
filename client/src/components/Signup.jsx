@@ -70,6 +70,7 @@ const Signup = () => {
           console.log(data);
           console.log(newUser);
           signup(data);
+          navigate('/')
         } else {
           setUser({
             email: "",

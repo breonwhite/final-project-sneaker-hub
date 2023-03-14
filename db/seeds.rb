@@ -11,11 +11,11 @@
 puts "🌱 Seeding User..." 
 
 buyer = User.create(
-    email: "bishop22122@mailinator.com",
+    email: "bishop1000@mailinator.com",
     username: "bishopxking",
     first_name: "Bishop",
     last_name: "Bourque",
-    phone_number: "1112223333",
+    phone_number: "111-333-3333",
     address: "9501 Church Ave",
     city: "Brooklyn",
     state: "NY",
@@ -25,15 +25,29 @@ buyer = User.create(
 )
 
 seller = User.create(
-    email: "twilightexscada@mailinator.com",
+    email: "twilightexscada1000@mailinator.com",
     username: "twilightcvnt",
     first_name: "Twilight",
     last_name: "Exscada",
-    phone_number: "2223334444",
+    phone_number: "222-333-4444",
     address: "1274 Pacific Street Apt 9",
     city: "Brooklyn",
     state: "NY",
     zipcode: 11216,
+    password_digest: BCrypt::Password.create('Password'),
+    role: "seller"
+)
+
+seller2 = User.create(
+    email: "badbunnyx1000@mailinator.com",
+    username: "badxbunny",
+    first_name: "Bad Bunny",
+    last_name: "Ocasio",
+    phone_number: "305-489-0967",
+    address: "4325 Poplar Lane",
+    city: "Miami",
+    state: "FL",
+    zipcode: 33131,
     password_digest: BCrypt::Password.create('Password'),
     role: "seller"
 )
@@ -142,6 +156,57 @@ Sneaker.create(
     retail_price: 110.00
 )
 
+#Bad Bunny Sneaker
+#11
+Sneaker.create(
+    name: "Jordan 1 Retro High J Balvin",
+    colorway: "MULTI-COLOR/BLACK-PINK FOAM-MULTI-COLOR",
+    description: "During the halftime performance at Super Bowl LIV, Latin sensation J Balvin unveiled a pair of signature tie-dye Jordan 1s that the world had never seen before. Then, in December of 2020, J Balvin and Jordan Brand got psychedelic and released the Air Jordan 1 High J Balvin.",
+    release_date: "2020-12-08",
+    image: "https://images.stockx.com/360/Air-Jordan-1-Retro-High-J-Balvin/Images/Air-Jordan-1-Retro-High-J-Balvin/Lv2/img01.jpg?fm=avif&auto=compress&w=576&dpr=1&updated_at=1635279421&h=384&q=57",
+    retail_price: 190.00
+)
+
+#12
+Sneaker.create(
+    name: "Jordan 4 Retro Off-White Sail (W)",
+    colorway: "SAIL/MUSLIN-WHITE-BLACK",
+    description: "Jordan Brand and Virgil Abloh teamed up once again to release the third silhouette in their collaborative history with the women's Jordan 4 Retro Off-White Sail (W), now available on StockX. After teasing the release of the Off-White 4 with samples in his MCA exhibit and presenting them in his Off-White FW2020 Women’s Show, Virgil Abloh finally delivered what might be the most anticipated release of 2020.",
+    release_date: "2020-07-25",
+    image: "https://images.stockx.com/360/Air-Jordan-4-Retro-Off-White-Sail-W/Images/Air-Jordan-4-Retro-Off-White-Sail-W/Lv2/img01.jpg?fm=avif&auto=compress&w=576&dpr=1&updated_at=1634934807&h=384&q=57",
+    retail_price: 200.00
+)
+
+#13
+Sneaker.create(
+    name: "Jordan 1 Retro High Shattered Backboard 3.0",
+    colorway: "BLACK/PALE VANILLA-STARFISH",
+    description: "Jordan Brand adds to its Shattered Backboard lineage with the Jordan 1 Retro High Shattered Backboard 3.0, now available on StockX. This colorway was inspired by the orange and black jersey that Michael wore when he shattered a backboard in an Italian exhibition game in 1986.",
+    release_date: "2019-10-26",
+    image: "https://images.stockx.com/360/Air-Jordan-1-Retro-High-Shattered-Backboard-3/Images/Air-Jordan-1-Retro-High-Shattered-Backboard-3/Lv2/img01.jpg?fm=avif&auto=compress&w=576&dpr=1&updated_at=1634935276&h=384&q=57",
+    retail_price: 160.00
+)
+
+#14
+Sneaker.create(
+    name: "Jordan 1 Retro Low OG SP Fragment x Travis Scott",
+    colorway: "WHITE/BLACK-ROYAL- SAIL",
+    description: "The Air Jordan 1 Low Fragment Design x Travis Scott nods to the original 2016 Air Jordan 1 Fragment with its simple color blocking. It features a smooth white leather upper with black and royal blue leather overlays. From there, a signature reversed Swoosh and yellowed soles add a Cactus Jack flair to the classic silhouette.",
+    release_date: "2021-08-13",
+    image: "https://images.stockx.com/360/Air-Jordan-1-Low-fragment-design-x-Travis-Scott/Images/Air-Jordan-1-Low-fragment-design-x-Travis-Scott/Lv2/img01.jpg?fm=avif&auto=compress&w=576&dpr=1&updated_at=1635183978&h=384&q=57",
+    retail_price: 150.00
+)
+
+#15
+Sneaker.create(
+    name: "Jordan 5 Retro Off-White Sail",
+    colorway: "SAIL/FIRE RED-MUSLIN-BLACK",
+    description: "Virgil Abloh added a second colorway to his Jordan 5 collaboration with the Jordan 5 Retro High Off-White Sail, now available on StockX. This release pays homage to the first Jordan that Virgil ever owned, the Air Jordan 5. In signature fashion, Virgil has reimagined this classic silhouette in a way that embraces the importance of Nike Air technology.",
+    release_date: "2020-10-29",
+    image: "https://images.stockx.com/360/Air-Jordan-5-Retro-Off-White-Sail/Images/Air-Jordan-5-Retro-Off-White-Sail/Lv2/img01.jpg?fm=avif&auto=compress&w=576&dpr=1&updated_at=1634912392&h=384&q=57",
+    retail_price: 225.00
+)
+
 puts "🌱 Done seeding Sneakers! Now seeding Listings..."
 
 # For Sneaker 1
@@ -236,6 +301,52 @@ Listing.create(
     price: 800.99,
     size: "6M",
     sold: true,
+)
+
+#Bad Bunny Listings
+#For Sneaker 11
+Listing.create(
+    seller: seller2,
+    sneaker_id: 11,
+    price: 1000.85,
+    size: "12M",
+    sold: false,
+)
+
+# For Sneaker 12
+Listing.create(
+    seller: seller2,
+    sneaker_id: 12,
+    price: 100.00,
+    size: "12M",
+    sold: false,
+)
+
+#For Sneaker 13
+Listing.create(
+    seller: seller2,
+    sneaker_id: 13,
+    price: 200.00,
+    size: "11M",
+    sold: false,
+)
+
+#For Sneaker 14
+Listing.create(
+    seller: seller2,
+    sneaker_id: 14,
+    price: 800.50,
+    size: "10M",
+    sold: false,
+)
+
+#For Sneaker 15
+Listing.create(
+    seller: seller2,
+    sneaker_id: 15,
+    price: 3000.00,
+    size: "12M",
+    sold: false,
 )
 
 puts "🌱 Done seeding Listings! Now seeding Purchases..."
