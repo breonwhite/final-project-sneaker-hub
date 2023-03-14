@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import sneakerpile from "../../images/sneaker-hanging.jpg";
+import sneakerpile from "../../images/home-page-design.png";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
@@ -8,8 +8,7 @@ import Button from "@mui/material/Button";
 import Loading from "../Loading";
 import { UserContext } from "../../context/User";
 
-const HomeLoggedIn = () => {
-  const { user, loggedIn, loading } = useContext(UserContext);
+const HomeLoggedIn = ({ user, loading, loggedIn }) => {
 
   if (loading && loggedIn) {
     return <Loading />;

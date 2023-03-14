@@ -15,21 +15,21 @@ const UserProvider = (props) => {
 
   useEffect(() => {
     setLoading(true);
-    async function fetchCurrentUser() {
-      const resp = await fetch("/me");
-      const data = await resp.json();
-      if (data.error) {
-        console.log(data.error);
-        setLoggedIn(false);
-      } else {
+    fetch("/me")
+      .then((response) => response.json())
+      .then((data) => {
         setUser(data);
-        fetchListings();
-        fetchPurchases();
-        getStatistics();
-        setLoggedIn(true);
-      }
-    }
-    fetchCurrentUser();
+        if (data.error) {
+          console.log(data.error);
+          setLoggedIn(false);
+        } else {
+          setLoggedIn(true)
+          fetchListings();
+          fetchPurchases();
+          getStatistics();
+          setLoading(false)
+        }
+    });
   }, []);
 
   const fetchListings = () => {
@@ -40,6 +40,7 @@ const UserProvider = (props) => {
           console.log(data.error);
         } else {
           setListings(data);
+          console.log(data)
           setLoading(false);
         }
       });
@@ -173,16 +174,25 @@ const UserProvider = (props) => {
   }
 
   const signup = (user) => {
+    setLoading(true)
+    console.log("Signing up user: ", user);
     setUser(user);
+    console.log("User state updated: ", user);
+    fetchListings();
+    console.log("Listings state loaded:", listings)
     setLoggedIn(true);
     setLoading(false)
   };
 
   const login = (user) => {
+    setLoading(true);
+    console.log("Logging in user: ", user);
     setUser(user);
+    console.log("User state: ", user);
+    fetchListings();
+    console.log("Listings state loaded:", listings)
     setLoggedIn(true);
-    setLoading(false)
-    navigate("/")
+    setLoading(false);
   };
 
   const logout = () => {

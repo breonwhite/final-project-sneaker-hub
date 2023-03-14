@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import sneakerpile from "../../images/sneaker-hanging.jpg";
+import sneakerpile from "../../images/home-page-design.png";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
@@ -37,7 +37,7 @@ const HomeLoggedOut = () => {
             size="large"
             style={{
               borderRadius: 35,
-              backgroundColor: "#039be5",
+              backgroundColor: "#f57c00",
               padding: "18px 36px",
               fontSize: "25px",
               align: "center",

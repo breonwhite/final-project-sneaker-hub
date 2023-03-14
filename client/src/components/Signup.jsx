@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import FormControl from "@mui/material/FormControl";
-import concrete4 from "../images/concrete-4.jpg";
+import shoelace from "../images/blue-background.jpg";
 
 const Signup = () => {
   const [errorsList, setErrorsList] = useState();
@@ -101,7 +101,8 @@ const Signup = () => {
       style={{
         backgroundSize: "cover",
         height: "100vh",
-        backgroundColor: "#3ccce5"
+        backgroundColor: "#3ccce5",
+        backgroundImage: `url(${shoelace})`,
       }}
     >
       <Grid
@@ -110,7 +111,7 @@ const Signup = () => {
         direction="column"
         alignItems="center"
         justify="center"
-        style={{ minHeight: "100vh", width: "70%", margin: "auto" }}
+        style={{ minHeight: "100vh", width: "35%", height: "40%", margin: "auto" }}
       >
         <Grid item xs={3}>
           <form onSubmit={handleSubmit}>
@@ -129,6 +130,7 @@ const Signup = () => {
                 <Stack direction="row" spacing={2}>
                   <TextField
                     sx={{ width: "100%" }}
+                    size="small"
                     name="first_name"
                     label="First Name"
                     value={user.first_name}
@@ -136,6 +138,7 @@ const Signup = () => {
                   />
                   <TextField
                     sx={{ width: "100%" }}
+                    size="small"
                     name="last_name"
                     label="Last Name"
                     value={user.last_name}
@@ -143,10 +146,11 @@ const Signup = () => {
                   />
                 </Stack>
               </FormControl>
-              <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
+              <FormControl fullWidth sx={{ width: "100%", mr: 1 }}>
                 <TextField
                   fullWidth
                   sx={{ mt: 2, mr: 1 }}
+                  size="small"
                   name="username"
                   label="Username"
                   value={user.username}
@@ -157,6 +161,7 @@ const Signup = () => {
                 <TextField
                   fullWidth
                   name="email"
+                  size="small"
                   label="Email Address"
                   type="email"
                   value={user.email}
@@ -166,6 +171,7 @@ const Signup = () => {
               <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
                 <TextField
                   fullWidth
+                  size="small"
                   name="password"
                   label="Password"
                   type="password"
@@ -176,6 +182,7 @@ const Signup = () => {
               <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
                 <TextField
                   fullWidth
+                  size="small"
                   name="password_confirmation"
                   label="Password Confirmation"
                   type="password"
@@ -185,6 +192,7 @@ const Signup = () => {
               </FormControl>
               <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
                 <TextField
+                  size="small"
                   sx={{ width: "100%" }}
                   name="address"
                   label="Address"
@@ -194,6 +202,7 @@ const Signup = () => {
               </FormControl>
               <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
                 <TextField
+                  size="small"
                   sx={{ width: "100%" }}
                   name="city"
                   label="City"
@@ -204,6 +213,7 @@ const Signup = () => {
               <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
                 <Stack direction="row" spacing={2}>
                   <TextField
+                    size="small"
                     sx={{ width: "100%" }}
                     name="state"
                     label="State"
@@ -211,6 +221,7 @@ const Signup = () => {
                     onChange={handleChange}
                   />
                   <TextField
+                    size="small"
                     sx={{ width: "100%" }}
                     type="number"
                     name="zipcode"
@@ -223,6 +234,7 @@ const Signup = () => {
               <FormControl fullWidth sx={{ width: "100%", mt: 2, mr: 1 }}>
                 <TextField
                   fullWidth
+                  size="small"
                   name="phone_number"
                   label="Phone Number"
                   value={user.phone_number}

@@ -8,7 +8,7 @@ const Home = () => {
 
   if (loggedIn) {
     return (
-      <HomeLoggedIn user={user} />
+      <HomeLoggedIn user={user} loading={loading} loggedIn={loggedIn} />
     )
   } else
   return (

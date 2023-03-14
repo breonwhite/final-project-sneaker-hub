@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import FormControl from "@mui/material/FormControl";
+import Loading from "../containers/Loading";
 
 const Div = styled("div")(({ theme }) => ({
   ...theme.typography.h3,
@@ -43,9 +44,12 @@ const Login = () => {
       }),
     }).then((response) => {
       if (response.ok) {
-        response.json().then((user) => {
-          login(user);
-        });
+        response
+          .json()
+          .then((user) => {
+            login(user);
+          })
+          .then(navigate("/"));
       } else {
         response.json().then((json) => {
           const errLi = <Alert severity="error">{json.error}</Alert>;

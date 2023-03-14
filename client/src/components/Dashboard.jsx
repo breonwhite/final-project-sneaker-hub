@@ -29,6 +29,7 @@ const Dashboard = () => {
     loading,
     listings,
     purchases,
+    fetchListings,
     getStatistics,
     editListing,
     destroyListing,
@@ -159,7 +160,7 @@ const Dashboard = () => {
                   Your Active Listings ({currentListings.length})
                 </Typography>
                 <Paper>
-                  <Box sx={{ maxHeight: 450, overflow: "auto" }}>
+                  <Box sx={{ minHeight: 450, maxHeight: 450, overflow: "auto" }}>
                     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
                       {currentListings.map((l, index) => {
                         return (

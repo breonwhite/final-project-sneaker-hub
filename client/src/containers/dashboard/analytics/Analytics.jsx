@@ -89,7 +89,7 @@ const Analytics = () => {
   ];
 
   return (
-    <Box sx={{ width: "100%", height: 900 }}>
+    <Box sx={{ width: "100%", height: 890 }}>
       <ThemeProvider
         theme={createTheme({
           components: {
