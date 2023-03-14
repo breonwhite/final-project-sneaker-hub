@@ -20,7 +20,7 @@ buyer = User.create(
     city: "Brooklyn",
     state: "NY",
     zipcode: 11212,
-    password_digest: BCrypt::Password.create('Password'),
+    password_digest: BCrypt::Password.create('1Password'),
     role: "buyer"
 )
 
@@ -34,11 +34,11 @@ seller = User.create(
     city: "Brooklyn",
     state: "NY",
     zipcode: 11216,
-    password_digest: BCrypt::Password.create('Password'),
+    password_digest: BCrypt::Password.create('1Password'),
     role: "seller"
 )
 
-seller2 = User.create(
+user = User.create(
     email: "badbunnyx1000@mailinator.com",
     username: "badxbunny",
     first_name: "Bad Bunny",
@@ -48,8 +48,8 @@ seller2 = User.create(
     city: "Miami",
     state: "FL",
     zipcode: 33131,
-    password_digest: BCrypt::Password.create('Password'),
-    role: "seller"
+    password_digest: BCrypt::Password.create('1Password'),
+    role: "user"
 )
 
 puts "🌱 Done seeding User! Now seeding sneakers..."
@@ -211,16 +211,16 @@ puts "🌱 Done seeding Sneakers! Now seeding Listings..."
 
 # For Sneaker 1
 Listing.create(
-    seller: seller,
+    seller_id: seller,
     sneaker_id: 1,
-    price: 1150.99,
+    price: 1150.00,
     size: "10M",
     sold: false,
 )
 
 #For Sneaker 2
 Listing.create(
-    seller: seller,
+    seller_id: seller,
     sneaker_id: 2,
     price: 700.00,
     size: "11M",
@@ -229,7 +229,7 @@ Listing.create(
 
 #For Sneaker 3
 Listing.create(
-    seller: seller,
+    seller_id: seller,
     sneaker_id: 3,
     price: 600.99,
     size: "6M",
@@ -238,7 +238,7 @@ Listing.create(
 
 # For Sneaker 4
 Listing.create(
-    seller: seller,
+    seller_id: seller,
     sneaker_id: 4,
     price: 500.00,
     size: "10M",
@@ -247,8 +247,8 @@ Listing.create(
 
 #For Sneaker 5
 Listing.create(
-    buyer: buyer, 
-    seller: seller,
+    buyer_id: buyer, 
+    seller_id: seller,
     sneaker_id: 5,
     price: 100.00,
     size: "11M",
@@ -257,8 +257,8 @@ Listing.create(
 
 #For Sneaker 6
 Listing.create(
-    buyer: buyer,
-    seller: seller,
+    buyer_id: buyer,
+    seller_id: seller,
     sneaker_id: 6,
     price: 300.85,
     size: "6M",
@@ -267,7 +267,7 @@ Listing.create(
 
 # For Sneaker 7
 Listing.create(
-    seller: buyer,
+    seller_id: buyer,
     sneaker_id: 7,
     price: 500.99,
     size: "10M",
@@ -276,7 +276,7 @@ Listing.create(
 
 #For Sneaker 8
 Listing.create(
-    seller: buyer,
+    seller_id: buyer,
     sneaker_id: 8,
     price: 100.00,
     size: "11M",
@@ -285,8 +285,8 @@ Listing.create(
 
 #For Sneaker 9
 Listing.create(
-    buyer: seller,
-    seller: buyer,
+    buyer_id: seller,
+    seller_id: buyer,
     sneaker_id: 9,
     price: 800.99,
     size: "6M",
@@ -295,8 +295,8 @@ Listing.create(
 
 #For Sneaker 10
 Listing.create(
-    seller: buyer,
-    buyer: seller,
+    seller_id: buyer,
+    buyer_id: seller,
     sneaker_id: 10,
     price: 800.99,
     size: "6M",
@@ -306,7 +306,7 @@ Listing.create(
 #Bad Bunny Listings
 #For Sneaker 11
 Listing.create(
-    seller: seller2,
+    seller_id: user,
     sneaker_id: 11,
     price: 1000.85,
     size: "12M",
@@ -315,7 +315,7 @@ Listing.create(
 
 # For Sneaker 12
 Listing.create(
-    seller: seller2,
+    seller_id: user,
     sneaker_id: 12,
     price: 100.00,
     size: "12M",
@@ -324,7 +324,7 @@ Listing.create(
 
 #For Sneaker 13
 Listing.create(
-    seller: seller2,
+    seller_id: user,
     sneaker_id: 13,
     price: 200.00,
     size: "11M",
@@ -333,7 +333,7 @@ Listing.create(
 
 #For Sneaker 14
 Listing.create(
-    seller: seller2,
+    seller_id: user,
     sneaker_id: 14,
     price: 800.50,
     size: "10M",
@@ -342,7 +342,7 @@ Listing.create(
 
 #For Sneaker 15
 Listing.create(
-    seller: seller2,
+    seller_id: user,
     sneaker_id: 15,
     price: 3000.00,
     size: "12M",
